@@ -9,7 +9,7 @@ const BASE_URL= import.meta.env.MODE === "development" ? "http://localhost:5001"
 export const useAuthStore = create((set,get) => ({
     authUser: null,
     isSignUp: false,
-    isLoggingIng: false,
+    isLoggingIn: false,
     isUpdatingProfile: false,
     isCheckingAuth: true,
     onlineUsers:[],
@@ -29,6 +29,7 @@ export const useAuthStore = create((set,get) => ({
     },
 
     signup: async (data) => {
+        set({isSigningUp:true});
         try {
             const res = await axiosInstance.post("/auth/signup", data);
             set({ authUser: res.data });
